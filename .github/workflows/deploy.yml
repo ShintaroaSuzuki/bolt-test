@@ -12,8 +12,6 @@ env:
   IMAGE: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.SERVICE_NAME }}
   SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET}}
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-  SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
-  NODE_ENV: ${{ secrets.NODE_ENV }}
 
 jobs:
   deploy-to-cloud-run:
@@ -47,8 +45,6 @@ jobs:
               --region $GCP_REGION \
               --platform=managed \
               --allow-unauthenticated \
-              --set-env-vars="NODE_ENV=$NODE_ENV" \
               --set-env-vars="SLACK_SIGNING_SECRET=$SLACK_SIGNING_SECRET" \
               --set-env-vars="SLACK_BOT_TOKEN=$SLACK_BOT_TOKEN" \
-              --set-env-vars="SLACK_APP_TOKEN=$SLACK_APP_TOKEN" \
               --quiet
